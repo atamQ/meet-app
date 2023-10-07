@@ -1,16 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import CitySearch from '../components/CitySearch';
-
-
-
-
+import { render, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import CitySearch from '../components/CitySearch'
+//import App from '../App'
 
 describe('<CitySearch /> component', () => {
     let CitySearchComponent;
     beforeEach(() => {
-        CitySearchComponent = render(<CitySearch />);
+        CitySearchComponent = render(<CitySearch allLocations={[]} />)
     });
     test('renders text input', () => {
         const cityTextBox = CitySearchComponent.queryByRole('textbox');
@@ -19,16 +16,17 @@ describe('<CitySearch /> component', () => {
     });
 
     test('suggestions list is hidden by default', () => {
-        const suggestionList = CitySearchComponent.queryByRole('list');
-        expect(suggestionList).not.toBeInTheDocument();
+        const suggestionList = CitySearchComponent.queryByRole('list')
+        expect(suggestionList).not.toBeInTheDocument()
     });
 
     test('renders a list of suggestions when city textbox gains focus', async () => {
         const user = userEvent.setup()
-        const cityTextBox = CitySearchComponent.queryByRole('text')
+        const cityTextBox = CitySearchComponent.queryByRole('textbox')
         await user.click(cityTextBox)
         const suggestionList = CitySearchComponent.queryByRole('list')
         expect(suggestionList).toBeInTheDocument()
         expect(suggestionList).toHaveClass('suggestions')
     });
+
 });
