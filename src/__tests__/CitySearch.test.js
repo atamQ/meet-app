@@ -15,7 +15,7 @@ describe('<CitySearch /> component', () => {
     test('renders a list of suggestions when city textbox gains focus', async () => {
         const CitySearchComponent = render(<CitySearch />);
         const user = userEvent.setup();
-        const cityTextBox = CitySearchComponent.queryByRole('textbox');
+        const cityTextBox = CitySearchComponent.queryByRole('text');
         await user.click(cityTextBox);
         const suggestionList = CitySearchComponent.queryByRole('list');
         expect(suggestionList).toBeInTheDocument();

@@ -5,3 +5,14 @@
 
 
 import '@testing-library/jest-dom';
+
+/*
+(global as any).document.createRange = () => ({
+    setstart: () => { },
+    setend: () => { },
+    commonancestorcontainer: {
+        nodename: 'body',
+        ownerdocument: document,
+    },
+})*/
+//referenceerror fix?
